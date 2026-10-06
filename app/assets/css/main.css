@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+}
+
+html,
+body,
+#__nuxt {
+  width: 100%;
+  overflow-x: clip;
+}
