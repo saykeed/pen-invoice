@@ -1,13 +1,14 @@
 <script setup lang="ts">
 useHead({
-  htmlAttrs: { class: 'overflow-x-hidden' },
-  bodyAttrs: { class: 'overflow-x-hidden bg-black' },
+  bodyAttrs: { class: 'bg-black' },
 })
 </script>
 
 <template>
-  <div class="min-h-screen w-full max-w-full overflow-x-hidden bg-black font-[Inter,ui-sans-serif,system-ui,sans-serif] text-[#ededed] antialiased">
+  <div class="min-h-screen w-full max-w-full bg-black font-[Inter,ui-sans-serif,system-ui,sans-serif] text-[#ededed] antialiased">
     <LandingSiteHeader />
-    <slot />
+    <div class="overflow-x-clip">
+      <slot />
+    </div>
   </div>
 </template>

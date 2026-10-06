@@ -3,7 +3,7 @@ import { ChevronRight } from '@lucide/vue'
 </script>
 
 <template>
-  <section class="relative overflow-hidden mx-auto w-full lg:max-w-280 xl:max-w-300  min-h-[calc(100vh-4rem)] px-5 py-6 lg:px-8 lg:py-20">
+  <section class="relative w-full min-h-screen overflow-hidden px-5 pt-[calc(4rem+1.5rem)] pb-6 md:px-8 lg:pt-[calc(4rem+5rem)] lg:pb-20">
     <div
       class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_72%_42%,rgba(255,255,255,0.07),transparent_52%)]"
     />
@@ -13,7 +13,7 @@ import { ChevronRight } from '@lucide/vue'
     />
 
     <div
-      class="relative grid w-full min-w-0 grid-cols-1 items-center gap-4 md:grid-cols-2 md:gap-10"
+      class="relative grid min-w-0 grid-cols-1 items-center gap-4 md:grid-cols-2 md:gap-10 md:mt-20 lg:mt-25 w-full lg:max-w-280 xl:max-w-300 mx-auto"
     >
       <div class="flex w-full flex-col items-center gap-6 text-center md:items-start md:gap-7 md:text-left">
         <NuxtLink
@@ -35,7 +35,7 @@ import { ChevronRight } from '@lucide/vue'
 
         <div class="flex w-full flex-col items-center gap-5 md:w-auto md:flex-row md:gap-6">
           <NuxtLink
-            to="#get-started"
+            to="/auth/signup"
             class="inline-flex h-12 w-full items-center justify-center rounded-xl border border-white/10 bg-[#2c2c2c] px-4 text-sm text-white transition-colors hover:bg-[#383838] md:h-10 md:w-auto md:rounded-lg"
           >
             Get started

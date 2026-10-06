@@ -10,15 +10,38 @@ const links = [
 ]
 
 const menuOpen = ref(false)
+const scrolled = ref(false)
 
 const closeMenu = () => {
   menuOpen.value = false
 }
+
+const onScroll = () => {
+  scrolled.value = window.scrollY > 0
+}
+
+onMounted(() => {
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 bg-black">
-    <div class="mx-auto flex h-16 w-full min-w-0 max-w-[1200px] items-center justify-between gap-4 px-5 lg:gap-6 lg:px-8">
+  <header class="fixed inset-x-0 top-0 z-50">
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 border-b transition-opacity duration-300"
+      :class="menuOpen
+        ? 'border-white/10 bg-black/70 opacity-100 backdrop-blur-xl'
+        : scrolled
+          ? 'border-white/10 bg-black/20 opacity-100 backdrop-blur-xl'
+          : 'border-transparent opacity-0'"
+    />
+    <div class="relative mx-auto flex h-16 w-full min-w-0 max-w-[1200px] items-center justify-between gap-4 px-5 lg:gap-6 lg:px-8">
       <NuxtLink to="/" class="shrink-0 text-[15px] font-medium tracking-tight text-white" @click="closeMenu">
         Invoice Gen
       </NuxtLink>
@@ -36,11 +59,11 @@ const closeMenu = () => {
       </nav>
 
       <div class="flex shrink-0 items-center gap-3">
-        <NuxtLink to="#login" class="hidden text-[13.5px] text-[#d4d4d4] transition-colors hover:text-white sm:inline">
+        <NuxtLink to="/auth/login" class="hidden text-[13.5px] text-[#d4d4d4] transition-colors hover:text-white sm:inline">
           Log in
         </NuxtLink>
         <NuxtLink
-          to="#get-started"
+          to="/auth/signup"
           class="inline-flex h-8 items-center rounded-full bg-[#ececec] px-3.5 text-[13px] font-medium text-black transition-colors hover:bg-white"
         >
           Get started
@@ -60,7 +83,7 @@ const closeMenu = () => {
 
     <nav
       v-if="menuOpen"
-      class="flex flex-col gap-1 border-t border-white/10 px-5 py-3 lg:hidden"
+      class="relative flex flex-col gap-1 border-t border-white/10 px-5 py-3 lg:hidden"
       aria-label="Mobile"
     >
       <NuxtLink
@@ -73,7 +96,7 @@ const closeMenu = () => {
         {{ link?.label }}
         <ChevronDown :size="14" :stroke-width="1.75" class="text-[#8a8a8a]" />
       </NuxtLink>
-      <NuxtLink to="#login" class="py-2.5 text-sm text-[#d4d4d4] sm:hidden" @click="closeMenu">
+      <NuxtLink to="/auth/login" class="py-2.5 text-sm text-[#d4d4d4] sm:hidden" @click="closeMenu">
         Log in
       </NuxtLink>
     </nav>

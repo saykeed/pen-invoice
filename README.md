@@ -13,3 +13,8 @@ Core screens:
 - Invoices
 - Invoice editor
 - Invoice preview
+
+
+
+v1:
+- Create account, setup business, create invoice, view invoice, download invoice as pdf

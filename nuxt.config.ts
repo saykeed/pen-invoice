@@ -1,4 +1,27 @@
+import { readFileSync } from 'node:fs'
+import { compileTemplate } from '@vue/compiler-sfc'
 import tailwindcss from '@tailwindcss/vite'
+
+function svgComponentPlugin() {
+  return {
+    name: 'svg-component',
+    enforce: 'pre' as const,
+    load(id: string) {
+      const file = id.split('?')[0]
+      if (!file?.endsWith('.svg')) return
+
+      const source = readFileSync(file, 'utf8')
+      const { code } = compileTemplate({
+        id: file,
+        filename: file,
+        source,
+        transformAssetUrls: false,
+      })
+
+      return `${code}\nexport default { render }`
+    },
+  }
+}
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -19,7 +42,7 @@ export default defineNuxtConfig({
     },
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), svgComponentPlugin()],
   },
   runtimeConfig: {
     public: {

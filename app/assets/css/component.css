@@ -1,0 +1,33 @@
+@layer components {
+  .field {
+    @apply flex flex-col gap-2;
+  }
+
+  .field-label {
+    @apply text-sm text-[#c8c8c8];
+  }
+
+  .field-input {
+    @apply h-11 rounded-xl border border-white/10 bg-[#141414] px-4 text-sm text-white outline-none placeholder:text-[#6a6a6a] focus:border-white/25;
+  }
+
+  .field-input-group {
+    @apply flex h-11 items-center gap-2 rounded-xl border border-white/10 bg-[#141414] px-4 focus-within:border-white/25;
+  }
+
+  .field-input-control {
+    @apply h-full w-full bg-transparent text-sm text-white outline-none placeholder:text-[#6a6a6a];
+  }
+
+  .auth_btn {
+    @apply flex h-11 items-center justify-center gap-2.5 rounded-full border border-white/10 bg-[#1a1a1a] px-4 text-sm text-white transition-colors hover:bg-[#242424];
+  }
+
+  .auth_link {
+    @apply text-[#d6d6d6] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white;
+  }
+
+  .term_link {
+    @apply text-[#c8c8c8] underline decoration-white/20 underline-offset-4;
+  }
+}
